@@ -386,3 +386,104 @@ footer p {
     color: var(--color-text-muted);
     max-width: none;
 }
+
+/* ============================================================
+   13. RESPONSIVIDADE (mobile-first)
+   ============================================================ */
+
+/* --- Navbar --- */
+.nav-menu {
+    display: none;
+}
+
+.nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Estado aberto do menu hambúrguer */
+.nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-menu.is-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) var(--space-6);
+    gap: var(--space-4);
+}
+
+/* --- Hero --- */
+#hero {
+    padding-block: var(--space-16);
+    min-height: auto;
+}
+
+/* --- Projects grid --- */
+.projects-grid {
+    grid-template-columns: 1fr;
+}
+
+/* --- Contact links --- */
+.hero-links {
+    flex-wrap: wrap;
+}
+
+
+/* sm: 640px — tablet portrait */
+@media (min-width: 640px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* lg: 1024px — desktop */
+@media (min-width: 1024px) {
+    /* Navbar desktop — esconde o toggle, mostra o menu */
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+    }
+
+    /* Hero ocupa o ecrã completo novamente */
+    #hero {
+        min-height: calc(100vh - 64px);
+        padding-block: 0;
+    }
+
+    /* Projects grid volta ao auto-fill */
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
